@@ -179,13 +179,13 @@ def recognize(img):
     #np.frombuffer(img.content, np.uint8) 的作用是將 img.content 中的字節數據解析為一個 NumPy 數組，
     #數據類型為 np.uint8（無符號8位整數）。這樣可以將字節數據轉換為可處理的數組形式。                                   
                                        
-    img = cv2.resize(image, (398, 224))  # 改变尺寸
+    img = cv2.resize(image, (398, 224))  # 改變尺寸
     img = img[0:224, 80:304]  # 裁切为正方形，符合 model 大小
-    image_array = np.asarray(img)  # 去除换行符号和结尾空白，产生文字数组
-    normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1  # 转换成预测数组
+    image_array = np.asarray(img)  # 去除換行符號和结尾空白，產生文字數组
+    normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1  # 轉換預測模組
     data[0] = normalized_image_array
     
-    prediction = model.predict(data)  # 预测结果
+    prediction = model.predict(data)  # 預測结果
     Paper, Paper_Containers, Plastics, Tin_and_aluminum, Glass, Trash = prediction[0]
     
     if Paper > 0.7:
@@ -203,7 +203,7 @@ def recognize(img):
     else:
         result = "I don't know"
     
-    # 构建回复消息对象
+    # 建構回覆消息對象
     reply_text = f"The predicted item is: {result}"
     reply_message = TextSendMessage(text=reply_text)
     
