@@ -13,6 +13,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain.vectorstores import FAISS
 from langchain_openai import OpenAIEmbeddings
 
+#
 app = Flask(__name__)
 
 # 加載環境變數
